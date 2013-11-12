@@ -40,13 +40,9 @@ package Fishhouse::Agent::Seller {
         my $bids = shift;
 
         my $wta = $self->wta;
-        $log->debug("wta=$wta");
         return $self->ask($wta) if rand > 0.5;
-        $log->debug('Skipped ask');
         return $self->pass unless $bids->size;
-        $log->debug('Bids have positive size');
         return $self->pass unless $wta <= $bids->best_price;
-        $log->debug('wta is greater than best bid');
         return $self->sell;
     }
     __PACKAGE__;
