@@ -9,6 +9,8 @@ package Fishhouse::Agent::Seller {
     use Fishhouse::Order::Ask;
     use Fishhouse::Order::Sell;
 
+    use constant type => 'seller';
+
     has supply => (
         is => 'ro',
         required => 1,
@@ -22,7 +24,7 @@ package Fishhouse::Agent::Seller {
             price => $price,
         });
         $self->unit_transmitted($ask);
-        return;
+        return $ask;
     }
 
     sub sell {
@@ -31,7 +33,8 @@ package Fishhouse::Agent::Seller {
 
     sub wta {
         my $self = shift;
-        return $self->supply->($self->units + 1);
+        my $wta = $self->supply->($self->units + 1);
+        return $wta;
     }
 
     sub decide {
