@@ -2,7 +2,7 @@ package Fishhouse::Transaction 0.001 {
     use Moo;
     use namespace::sweep;
 
-    with 'My::Timestamped';
+    with 'Fishhouse::Timestamped';
 
     has buyer_id => (
         is => 'ro',
