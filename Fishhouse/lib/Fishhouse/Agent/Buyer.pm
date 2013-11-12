@@ -4,8 +4,12 @@ package Fishhouse::Agent::Buyer {
 
     with 'Fishhouse::Agent';
 
+    use Log::Any qw( $log );
+
     use Fishhouse::Order::Bid;
     use Fishhouse::Order::Buy;
+
+    use constant type => 'buyer';
 
     has demand => (
         is => 'ro',
@@ -29,7 +33,8 @@ package Fishhouse::Agent::Buyer {
 
     sub wtp {
         my $self = shift;
-        return $self->demand->($self->units + 1);
+        my $wtp = $self->demand->($self->units + 1);
+        return $wtp;
     }
 
     sub decide {
