@@ -5,6 +5,8 @@ package Fishhouse::Agent 0.001 {
     use Digest::SHA qw( sha1_hex );
     use Log::Any qw( $log );
 
+    requires 'type';
+
     use Fishhouse::Order::Pass;
 
     has id => (
@@ -24,6 +26,15 @@ package Fishhouse::Agent 0.001 {
 
     sub pass {
         return Fishhouse::Order::Pass->new({agent => $_[0]});
+    }
+
+    sub transaction_completed {
+        my $self = shift;
+        my $transaction = shift;
+
+        # TODO
+
+        return;
     }
 
     sub unit_transmitted {
