@@ -60,6 +60,7 @@ package Fishhouse::Queue 0.001 {
         unless (@$orders) {
             delete $queue->{$best_price};
         }
+        $self->_update_best_price;
 
         return $order;
     }
