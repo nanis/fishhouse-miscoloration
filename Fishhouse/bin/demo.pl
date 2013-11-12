@@ -16,6 +16,7 @@ package main {
 
     sub run {
         my $argv = shift;
+        # TODO: command line arguments
 
         my $market = Fishhouse::Market->new;
 
@@ -27,10 +28,10 @@ package main {
         $market->add_agents(map Fishhouse::Agent::Seller->new({
                     supply => sub { 10 + 2 * $_[0] },
                 }),
-            1 .. 10
+            1 .. 3
         );
 
-        $market->run(1);
+        $market->run($argv->[0] // 1);
 
         return;
     }
