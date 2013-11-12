@@ -4,6 +4,7 @@ package Fishhouse::Market 0.001 {
 
     use Carp qw( croak );
     use Log::Any qw( $log );
+    use Time::HiRes qw( usleep );
 
     use Fishhouse::Queue::Ask;
     use Fishhouse::Queue::Bid;
@@ -41,6 +42,7 @@ package Fishhouse::Market 0.001 {
         while (time - $^T < $duration) {
             $self->turn;
             $self->display_queues;
+            usleep 7_500;
         }
         return;
     }
@@ -131,6 +133,8 @@ package Fishhouse::Market 0.001 {
     sub add_transaction {
         my $self = shift;
         my $transaction = shift;
+
+        printf "Transaction @ %s\n", $transaction->price;
 
         push @{ $self->transactions }, $transaction;
         return;
