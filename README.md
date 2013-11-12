@@ -53,7 +53,7 @@ they are ordered by order of arrival.
 Bids are ordered from highest to lowest price. Asks are ordered from lowest
 to highest price.
 
-## A transaction occurs when a buy or sell order is received by the market
+A transaction occurs when a buy or sell order is received by the market
 object. For a buy order, the buyer buys one unit at the current lowest ask
 price. For a sell order, the seller sells one unit at the current highest
 bid price.
