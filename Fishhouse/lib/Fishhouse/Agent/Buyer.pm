@@ -17,7 +17,7 @@ package Fishhouse::Agent::Buyer {
         my $price = shift;
         my $bid = Fishhouse::Order::Bid->new({
             agent => $self,
-            price => $shift,
+            price => $price,
         });
         $self->unit_transmitted($bid);
         return $bid;
