@@ -43,7 +43,7 @@ package Fishhouse::Agent::Seller {
         my $bids = shift;
 
         my $wta = $self->wta;
-        return $self->ask($wta) if rand > 0.5;
+        return $self->ask($wta) if $self->pass_probability < rand;
         return $self->pass unless $bids->size;
         return $self->pass unless $wta <= $bids->best_price;
         return $self->sell;

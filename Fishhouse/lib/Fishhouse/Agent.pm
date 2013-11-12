@@ -19,6 +19,11 @@ package Fishhouse::Agent 0.001 {
         },
     );
 
+    has pass_probability => (
+        is => 'ro',
+        default => sub { 0.25 },
+    );
+
     has units => (
         is => 'rwp',
         default => sub { 0 },
