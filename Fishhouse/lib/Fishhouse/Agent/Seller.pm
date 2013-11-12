@@ -2,6 +2,8 @@ package Fishhouse::Agent::Seller {
     use Moo;
     use namespace::sweep;
 
+    use Log::Any qw( $log );
+
     with 'Fishhouse::Agent';
 
     use Fishhouse::Order::Ask;
@@ -14,9 +16,10 @@ package Fishhouse::Agent::Seller {
 
     sub ask {
         my $self = shift;
+        my $price = shift;
         my $ask = Fishhouse::Order::Ask->new({
-            agent => $_[0],
-            price => $_[1],
+            agent => $self,
+            price => $price,
         });
         $self->unit_transmitted($ask);
         return;
@@ -37,9 +40,13 @@ package Fishhouse::Agent::Seller {
         my $bids = shift;
 
         my $wta = $self->wta;
+        $log->debug("wta=$wta");
         return $self->ask($wta) if rand > 0.5;
+        $log->debug('Skipped ask');
         return $self->pass unless $bids->size;
-        return $self->pass unless $wta >= $bids->best_price;
+        $log->debug('Bids have positive size');
+        return $self->pass unless $wta <= $bids->best_price;
+        $log->debug('wta is greater than best bid');
         return $self->sell;
     }
     __PACKAGE__;
