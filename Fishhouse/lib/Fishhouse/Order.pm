@@ -6,6 +6,7 @@ package Fishhouse::Order {
     with 'Fishhouse::Timestamped';
 
     use Digest::SHA qw( sha1_hex );
+    use Log::Any qw( $log );
 
     has agent => (
         is => 'ro',
@@ -29,7 +30,7 @@ package Fishhouse::Order {
             $self->timestamp_string,
             $self->agent->id,
             $self->id,
-            $self->price || '',
+            ($self->can('price') ? $self->price : ''),
         );
     }
     __PACKAGE__;
