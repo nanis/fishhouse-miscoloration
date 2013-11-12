@@ -34,6 +34,16 @@ sellers.</dd>
 
 </dl>
 
+Currently, buy and sell orders are handled in a funny way. If a buyer has an
+outstanding bid, and sends a buy order, the outstanding bid remains in the
+queue. Ditto for sellers. This might be odd, depending on your perspective.
+
+Negative bids are definite possibility if the market goes on long enough.
+
+Work up to this point was intended to get me a clear idea of how to put
+together a market simulation with the least amount of code. The next step is
+to write some tests so I can make actual progress.
+
 ## Order queues
 
 The market object maintains two queues: One for asks, and one for bids.
