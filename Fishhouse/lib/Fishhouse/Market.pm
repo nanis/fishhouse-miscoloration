@@ -7,6 +7,7 @@ package Fishhouse::Market 0.001 {
 
     use Fishhouse::Queue::Ask;
     use Fishhouse::Queue::Bid;
+    use Fishhouse::Transaction;
 
     has agents => (
         is => 'ro',
@@ -47,7 +48,6 @@ package Fishhouse::Market 0.001 {
     sub turn {
         my $self = shift;
         my $agent = $self->random_agent;
-
         my $order = $agent->decide($self->asks, $self->bids);
         my $handler = $self->get_handler($order->type);
         $self->$handler($order);
