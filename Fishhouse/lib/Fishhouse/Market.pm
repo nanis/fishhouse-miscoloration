@@ -49,17 +49,16 @@ package Fishhouse::Market 0.001 {
         my $agent = $self->random_agent;
 
         my $order = $agent->decide($self->asks, $self->bids);
-        $log->info($order->to_string);
-
         my $handler = $self->get_handler($order->type);
         $self->$handler($order);
+
         return;
     }
 
     sub get_handler {
         my $self = shift;
         my $type = shift;
-        return "${type}_handler";
+        return "${type}_received";
     }
 
     sub add_agents {
