@@ -1,4 +1,4 @@
-package My::Order::Pass 0.001 {
+package Fishhouse::Order::Pass 0.001 {
     use Moo;
     use namespace::sweep;
 
